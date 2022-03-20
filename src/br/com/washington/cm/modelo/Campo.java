@@ -14,6 +14,7 @@ public class Campo {
 
 	private List<Campo> vizinhos = new ArrayList<>();
 	private List<CampoObservador> observadores = new ArrayList<>();
+	//private List<BiConsumer<Campo, CampoEvento>> observadores2 = new ArrayList<>();
 
 	Campo(int linha, int coluna) {
 		this.linha = linha;
@@ -26,10 +27,10 @@ public class Campo {
 	
 	private void notificarObservadores(CampoEvento evento) {
 		observadores.stream()
-			.forEach(o -> o.eventoOcorreu2(this, evento));
+			.forEach(o -> o.eventoOcorreu(this, evento));
 	}
 
-	boolean adicionarVizinho(Campo vizinho) {
+	boolean adicionarVizinho(Campo vizinho) { 
 		boolean linhaDiferente = linha != vizinho.linha;
 		boolean colunaDiferente = coluna != vizinho.coluna;
 		boolean diagonal = linhaDiferente && colunaDiferente;
